@@ -9,10 +9,11 @@
       type="text"
       name="data_box"
       [(ngModel)]="data"
+      (ngModelChange)="onDataChanged($event)"
       placeholder="data"
       class="block max-w-150 rounded-lg shadow-sm border-4 p-2 bg-green-200 hover:bg-green-300 focus:bg-green-300 focus:border-indigo-400 focus:ring-indigo-400"
     />
-    @if (hash().length > 0) {
+    @if (hash().length > 0 && showHash) {
       <pre
         id="hash_value"
         class="flex items-center justify-center bg-gray-900 text-white p-2 rounded-lg overflow-x-auto shadow-lg border border-gray-700"
