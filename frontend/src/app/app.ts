@@ -13,12 +13,13 @@ export class App {
   private hashService = inject(HashService);
   protected readonly title = signal('Project Two');
   protected data = signal('');
+  protected hash = signal('');
 
   async onSubmit(event: Event) {
     try {
       const response = await lastValueFrom(this.hashService.hash_request(this.data()));
-      alert(response.toString());
-    } catch(error) {
+      this.hash.set(response.toString());
+    } catch (error) {
       alert('Request Failed: ' + error);
     }
   }

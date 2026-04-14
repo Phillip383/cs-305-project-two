@@ -1,4 +1,4 @@
-<div id="bg" class="flex items-center justify-center bg-slate-900 h-screen w-screen">
+<div id="bg" class="flex items-center justify-center bg-slate-900 h-screen w-screen gap-4">
   <form (submit)="onSubmit($event)" id="data_form" class="flex flex-col items-center gap-4">
     <label
       for="data_form"
@@ -10,8 +10,16 @@
       name="data_box"
       [(ngModel)]="data"
       placeholder="data"
-      class="block w-full rounded-lg shadow-sm border-4 p-2 bg-green-200 hover:bg-green-300 focus:bg-green-300 focus:border-indigo-400 focus:ring-indigo-400"
+      class="block max-w-150 rounded-lg shadow-sm border-4 p-2 bg-green-200 hover:bg-green-300 focus:bg-green-300 focus:border-indigo-400 focus:ring-indigo-400"
     />
+    @if (hash().length > 0) {
+      <pre
+        id="hash_value"
+        class="flex items-center justify-center bg-gray-900 text-white p-2 rounded-lg overflow-x-auto shadow-lg border border-gray-700"
+      >
+      <code class="font-mono text-sm">{{ hash() }}</code>
+    </pre>
+    }
     <button type="submit" class="hover:bg-green-300 bg-green-600 rounded-lg p-2 justify-center">
       Submit
     </button>
