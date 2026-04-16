@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +16,17 @@ public class ChecksumController {
 
   @PostMapping("/hash")
   public String hashData(@RequestBody Map<String, String> payload) {
-    String hexHash = "";
     String data = payload.get("data");
+    return getSHA(data);
+  }
+
+  @GetMapping("/getHash")
+  public String hashData(@RequestParam(name = "data", defaultValue = "Phillip Wood") String data) {
+    return getSHA(data);
+  }
+
+  private String getSHA(String data) {
+    String hexHash = "";
 
     try {
       MessageDigest digest = MessageDigest.getInstance("SHA-256");
