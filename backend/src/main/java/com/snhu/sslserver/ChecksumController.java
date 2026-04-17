@@ -22,7 +22,7 @@ public class ChecksumController {
 
   @GetMapping("/getHash")
   public String hashData(@RequestParam(name = "data", defaultValue = "Phillip Wood") String data) {
-    return getSHA(data);
+    return "<p>Data: " + data + "</p><p>Hash: " + getSHA(data) + "</p>";
   }
 
   private String getSHA(String data) {
