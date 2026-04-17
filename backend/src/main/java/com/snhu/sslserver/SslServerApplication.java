@@ -11,4 +11,3 @@ public class SslServerApplication {
   }
 
 }
-// FIXME: Add route to enable check sum return of static data example:  String data = "Hello World Check Sum!";
