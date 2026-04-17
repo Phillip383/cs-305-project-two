@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
 @RestController
 public class ChecksumController {
@@ -22,7 +23,8 @@ public class ChecksumController {
 
   @GetMapping("/getHash")
   public String hashData(@RequestParam(name = "data", defaultValue = "Phillip Wood") String data) {
-    return "<p>Data: " + data + "</p><p>Hash: " + getSHA(data) + "</p>";
+    final String orgData = HtmlUtils.htmlEscape(data); //Prevents cross-sight scripting by escaping html tags, such as <script> tags. 
+    return "<p>Data: " + orgData + "</p><p>Hash: " + getSHA(orgData) + "</p>";
   }
 
   private String getSHA(String data) {
